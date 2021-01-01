@@ -1,78 +1,66 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-class Stack{
-public:
-    int data;
-    struct Stack *next;
+#define max 100
 
-    Stack(int x){
-        data=x;
-        next=NULL;
+class Stack{
+        int top;
+        int stack[max];
+public:
+
+    Stack(){
+        top=-1;
+    }
+    void push(int x){
+    if(top==max)
+        cout<<"\n***Stack is Full***\n";
+    else
+        stack[++top]=x;
+}
+    void pop(){
+        if(top==-1)
+            cout<<"\n***Stack is Empty***\n";
+        else
+            top--;
+    }
+
+    int peek(){
+        return stack[top];
+    }
+
+    bool isEmpty(){
+        if(top==-1)
+            return true;
+        else
+            return false;
     }
 };
 
-struct Stack *push(struct Stack *top, int x){
 
-    if(top==NULL)
-        top = new Stack(x);
-    else{
-        Stack *temp = new Stack(x);
-        temp->next=top;
-        top = temp;
-    }
 
-    return top;
-}
-
-struct Stack *pop(struct Stack *top)
-{
-    if(top->next==NULL)
-        delete top;
-    else{
-        Stack *temp = top;
-        top=top->next;
-        delete temp;
-    }
-
-    return top;
-}
-
-int peek(struct Stack *top)
-{
-    if(top)
-        return top->data;
-    else
-        return -1;
-}
-bool isEmpty(struct Stack *top)
-{
-    if(top)
-        return false;
-    else return true;
-}
 int main()
 {
-    Stack *top=NULL;
+    struct Stack s;
     int x,c;
-
-   while(1){
-        printf("\n1 Push\n 2 Pop\n 3 Top\n 4 Is Empty\n 5 Exit\n\n");
+    
+    while(1){
+        printf("\n 1 Push\n 2 Pop\n 3 Top\n 4 Is Empty\n 5 Exit\n");
         cin>>c;
 
         switch(c){
             case 1: cin>>x;
-                    top = push(top,x);
+                    s.push(x);
                     break;
-            case 2: top = pop(top);
+            case 2: s.pop();
                     break;
-            case 3: cout<<peek(top);
+            case 3: cout<<"Stack top is : "<<s.peek();
                     break;
-            case 4: cout<<isEmpty(top)<<endl;
+            case 4: cout<<"Stack is Empty "<<s.isEmpty()<<endl;
                     break;
             case 5: exit(0);
                     break;
         }
 
     }
+
 }
