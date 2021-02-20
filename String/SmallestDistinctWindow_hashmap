@@ -1,0 +1,87 @@
+https://practice.geeksforgeeks.org/problems/smallest-distant-window3132/1#
+
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+const int no_of_chars = 256;
+
+string findSubString(string str);
+
+// Driver code
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+
+        string str;
+        cin >> str;
+
+        cout << findSubString(str).size() << endl;
+    }
+    return 0;
+}
+// } Driver Code Ends
+
+
+
+
+string findSubString(string s)
+{
+    // create a hash map for every distinct  Element;
+    unordered_map<int, int> hash_map;
+    
+    // Itrerating through each character of the string and storing the count of of character in the hash map 
+    for(int i=0; s[i]; i++)
+        hash_map[s[i]]++;   
+
+    string result;
+
+    // Initializing the the size to be of MAX_INT
+    // As whatever the size of the first sub_string found will be less than that
+    //Ahead in the program if the found sub_string is less than the size will store the value of sub_string
+    // in the result and assign size = sub_string.size()
+    int size = INT_MAX;
+        
+    // No of distinct element count of the hash_map
+    int distinct_count = hash_map.size();
+    
+    for(int i=0; s[i]; i++)
+    {
+        int count=0;
+
+        // creating aaray for every character 0-255
+        // and initializing with 0
+        int value[256] = {0};
+
+        // Sub_string will will be initalize to null every time ith loop run
+        // It will stored the required string 
+        string sub_string = "";
+        for(int j=i; s[j]; j++)
+        {
+            //checking if the charcter is found
+            if(value[s[j]]==0)
+            {
+                //if not cound is increamented and value of perticulare location is set to 1
+                count++;
+                value[s[j]] = 1;
+            }
+            
+            // storing the value in sub_string
+            sub_string += s[j];
+            if(count == distinct_count)
+                break;
+            
+        }
+        
+        //If size of sub_string is less than size ren size is updated to sub_string.size
+        //  and result = sub_string
+        if(sub_string.size() < size &&  distinct_count==count){
+             result = sub_string;
+             size = sub_string.size();
+        }
+            
+    }
+    
+    return result;
+}
