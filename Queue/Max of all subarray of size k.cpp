@@ -15,19 +15,24 @@ vector <int> max_of_subarrays(int *arr, int n, int k){
     deque<int> qi(k);
     for(i=0; i<k; i++)
     {
+	// if deque is not empty and cur_elemet is greater than the last element then pop_back
         while(!qi.empty() && arr[i]>=arr[qi.back()])
             qi.pop_back();
         
+	// else if deque is empty or the cur_element is smaller than last element of deque
         qi.push_back(i);
     }
     
     for(;i<n;i++)
     {
+	//pushing the mfront of deque(max of size k subarray) 
         max_no.push_back(arr[qi.front()]);
         
+	//checking is the max of previsous will lie in current window or not
         while(!qi.empty() && qi.front()<=i-k)
             qi.pop_front();
         
+	// same as the intital step for 1st window of size k
         while(!qi.empty() && arr[i]>=arr[qi.back()])
             qi.pop_back();
         
