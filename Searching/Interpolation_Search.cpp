@@ -6,30 +6,33 @@ using namespace std;
 
 int interpolation(int ar[],int n, int key)
 {
-    int low,high,pos;
-    low = 0;
-    high = n-1;
+   int lo=0, hi=n-1;
+	int pos=0;
 
-    while(low<=high && key>=ar[low] && key<=ar[high])
-    {
-        if(high==low)
-        {
-            if(ar[high]==key)
-                return high;
-            return -1;
-        }
-        
-        pos = low + ((key-ar[low])/(ar[high]-ar[low]))*(high-low);
+	if(ar[pos]==key)
+			return 1;
 
-        if(ar[pos]==key)
-            return pos;
-        else if(ar[pos]>key)
-            high = pos-1;
-        else if(ar[pos]<key)
-            low = pos+1;
-        
-    }
-    return -1;
+	while(lo<hi && key>=ar[lo] && key<=ar[hi])
+	{
+	    if(hi==lo)
+	    {
+	        if(ar[lo]==key)
+	            return 1;
+	        return -1;
+	    }
+		
+		pos = lo + (key-ar[lo])/(ar[hi]-ar[lo])*(hi-lo);
+
+		if(ar[pos]==key)
+			return 1;
+		else if(ar[pos]>key)
+			hi = pos-1;
+		else
+			lo = pos+1;
+
+	}
+	
+	return -1;
 }
 
 int main()
