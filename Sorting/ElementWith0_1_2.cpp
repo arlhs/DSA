@@ -1,49 +1,66 @@
 // { Driver Code Starts
-#include <bits/stdc++.h>
+// https://practice.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1#
+
+#include<bits/stdc++.h>
 using namespace std;
 
-void swap(int *a, int *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
 
-void sorting(int *ar, int n)
+
+ // } Driver Code Ends
+
+class Solution
 {
-    int left=0, right=n-1, mid = 0;
+    public:
+    void sort012(int ar[], int n)
+    {
+        int left=0, right=n-1, mid = 0;
 
     while(mid<=right)
     {
+        //left will always be sorted as we have initialised left and mid with 0
+        // thus we increment mid and  left for ar[mid]==0
         if(ar[mid]==0)
-        {
-            swap(ar[mid], ar[left]);
-            //mid++;
-            left++;
-        }
+            swap(ar[left++], ar[mid++]);
+            
+        //When ar[mid]==2 we don't incremnent mid as the ar[right] can be 0,1 or 2
+        //Thus we only decremnet the right;
         else if(ar[mid]==2)
-        {
-            swap(ar[mid], ar[right]);
-            //mid++;
-            right--;
-        }
-        mid++;
+            swap(ar[mid], ar[right--]);
+            
+            //ar[mid]==1. it is at correct place
+        else 
+            mid++;
     }
-
-}
-
-int main()
-{
-    int n;
-    cin>>n;
-
-    int ar[n];
-
-    for(int i=0; i<n; i++)
-        cin>>ar[i];
+    }
     
-    sorting(ar, n);
+};
 
-      for(int i=0; i<n; i++)
-        cout << ar[i] << " ";
+// { Driver Code Starts.
+int main() {
+
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >>n;
+        int a[n];
+        for(int i=0;i<n;i++){
+            cin >> a[i];
+        }
+
+        Solution ob;
+        ob.sort012(a, n);
+
+        for(int i=0;i<n;i++){
+            cout << a[i]  << " ";
+        }
+
+        cout << endl;
+        
+        
+    }
+    return 0;
 }
+
+  // } Driver Code Ends
