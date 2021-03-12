@@ -3,6 +3,34 @@
 
 using namespace std;
 
+// mine simplest jump program
+
+// int jumpsearch(int ar[], int n, int key)
+// {
+// 	int jump=sqrt(n);
+// 	int pos=0;
+
+// 	if(ar[pos]==key)
+// 		return 1;
+// 	pos++;
+
+// 	while(ar[pos]<=key && pos<n)
+// 	{
+// 		pos*=jump;
+// 	}
+
+// 	pos = pos/jump;
+
+// 	for(int i=pos; i<=n; i++)
+// 	{
+// 		if(ar[i]==key)
+// 			return 1;
+// 	}
+
+// 	return -1;
+
+// }
+
 int jumpSort(int *ar,int n, int key)
 {
     int m=sqrt(n)-1;
