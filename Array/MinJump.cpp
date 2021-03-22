@@ -37,9 +37,12 @@ int minJumps(int arr[], int n){
         if(step==0)
         {
             jump ++;
+
+            // 2 1 0 3 for 0th element in the array
             if(i>=mx)
                 return -1;
             
+            // no of step tp be checked for maximum index 
             step = mx - i;
         }
     }
