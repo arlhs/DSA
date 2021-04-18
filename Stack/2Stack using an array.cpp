@@ -1,4 +1,4 @@
-https://practice.geeksforgeeks.org/problems/implement-two-stacks-in-an-array/1
+//https://practice.geeksforgeeks.org/problems/implement-two-stacks-in-an-array/1
 
 // { Driver Code Starts
 #include<bits/stdc++.h>
