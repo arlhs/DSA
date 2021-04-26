@@ -1,0 +1,1 @@
+cout<<temp.first<<" weight->"<<temp.second<<"\n";
