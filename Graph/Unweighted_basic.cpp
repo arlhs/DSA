@@ -120,6 +120,46 @@ void bfs(map<int, list<int>> adj, int node)
     }
 }
 
+// Gives nth connection of a node
+void nthCon(map<int, list<int>> adj, int node, int n)
+{
+    int size = adj.size();
+    //    cout<<size<<" ";
+    vector<bool> visited(size, false);
+
+    queue<int> q;
+    q.push(node);
+    int nbr;
+    int nth = 0;
+    visited[node] = true;
+
+    while (!q.empty())
+    {
+        nbr = q.size();
+
+        while (nbr--)
+        {
+
+            node = q.front();
+            q.pop();
+            if (nth == n)
+                cout << node << " ";
+
+            for (auto it = adj[node].begin(); it != adj[node].end(); it++)
+            {
+                if (!visited[*it])
+                {
+                    visited[*it] = true;
+                    q.push(*it);
+                }
+            }
+        }
+        if (nth == n)
+            return;
+        nth++;
+    }
+}
+
 void dfs(map<int, list<int>> &adj, vector<bool> &visited, int node)
 {
     visited[node] = true;
@@ -145,6 +185,16 @@ void dfsUntil(map<int, list<int>> &adj, int node)
 int main()
 {
     map<int, list<int>> adj;
+
+    // int n;
+    // cin >> n;
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     int u, v;
+    //     cin >> u >> v;
+    //     addNode(adj, u, v);
+    // }
 
     addNode(adj, 0, 1);
     addNode(adj, 0, 2);
