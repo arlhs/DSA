@@ -1,6 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+int lowerBound(int ar[], int n, int key)
+{
+    int lo=0, hi = n-1;
+
+    while(lo<=hi){
+
+        int mid = (lo+hi)/2;
+        if(key==ar[mid])
+            hi = mid-1;
+        else if(key<ar[mid])
+            hi = mid - 1;
+        else if(key>ar[mid])
+            lo = mid + 1;
+    }
+
+
+    return lo;
+}
+
 int upperBound(int ar[], int n, int key)
 {
     int low = 0, hi = n - 1;
